@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        # CVE-2022-45868: web-allow-others=true でリモートからのコンソールアクセスを許可
+        # → 認証なしで任意SQL実行 / INIT経由でOSコマンド実行が可能
+        web-allow-others: true
+
+server:
+  port: 8080
+
+logging:
+  config: classpath:log4j2.xml
